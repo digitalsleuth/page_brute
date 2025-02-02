@@ -1,7 +1,7 @@
-page_brute (beta!)
+page-brute
 ==========
 
-**page_brute.py** is a digital forensic tool purposed to analyze and categorize individual paged memory frames from Windows Page Files by appying YARA-based signatures to fix-sized blocks of pagefile.sys. 
+**page-brute** is a digital forensic tool purposed to analyze and categorize individual paged memory frames from Windows Page Files by appying YARA-based signatures to fix-sized blocks of pagefile.sys. 
 
 ***This tool can be used to:***
  * Disambiguate evidence within pagefile.sys by logically grouping blocks/pages into categories based on YARA rulesets of forensic artifacts that follow a pattern/convention.
@@ -10,18 +10,15 @@ page_brute (beta!)
  * Identify evidence of active malware infections based on YARA signatures for known malware.
  * Isolate page files that contain signatures/magic values for popular file formats for more precise file carving.
 
-##NOTICE:
-This tool is currently in beta! This utility and its signature set is subject to change in the near future! For suggestions - email the author via github.
+## Requires (installed by default):
+ * yara-python
+ * default_signatures.yar
 
-##Requires:
- * yara & yara-python: http://code.google.com/p/yara-project/downloads/list
- * default_signatures.yar (see above)
-
-##How does it work?
-1. Given block size, page_brute.py reads in pagefile in fixed-sized blocks (default, 4096 bytes)
+## How does it work?
+1. Given block size, page-brute reads in pagefile in fixed-sized blocks (default, 4096 bytes)
 2. For each block, page_brute decides if the block is null - if null, the block is skipped.
 3. If block is not null, the block is applied against compiled yara signatures (defined in -r/--rules argument).
-  * If -r/--rules not provided, page_brute.py will read from the default ruleset: default_signatures.yar
+  * If -r/--rules not provided, page-brute will read from the default ruleset: default_signatures.yar
   * Custom rules stored in a folder can also be provided as an argument to -r/--rules (must end in .yar)
 4. If a block matches a YARA signature, the raw block will be stored in the corresponding output directory.
   * -o/--scanname defines output folder that raw blocks will be saved.
@@ -31,12 +28,12 @@ This tool is currently in beta! This utility and its signature set is subject to
 
 ***NOTE:*** if a page file matches against multiple signatures, the corresponding page file will be copied to each rule directory.
 
-##How do I write signatures?
+## How do I write signatures?
 YARA is a powerful engine that allows you to match groups of strings,binary sequences,and regular expressions with user-defined boolean conditions against pretty much anything.
 
 To learn more about writing YARA rules, please see the informative user guide here: http://yara-project.googlecode.com/files/YARA%20User%27s%20Manual%201.6.pdf
 
-##Current Signatures:
+## Current Signatures:
   * FTP
   * HTTP requests/responses
   * IRC
@@ -47,10 +44,10 @@ To learn more about writing YARA rules, please see the informative user guide he
   * CMD Shell (this might suck)
   * SMTP Message Headers
 
-##Usage:
+## Usage:
 From the help page:
 ```
-usage: page_brute-BETA.py [-h] [-f FILE] [-p SIZE] [-o SCANNAME] [-i]
+usage: page-brute [-h] [-f FILE] [-p SIZE] [-o SCANNAME] [-i]
                           [-r RULEFILE]
 
 Checks pages in pagefiles for YARA-based rule matches. Useful to identify
@@ -73,10 +70,10 @@ optional arguments:
 ```
 ###In Action:
 ```
-root@system:~/Desktop/page/page_brute# ./page_brute-BETA.py --file=pagefile.sys
-[+] - PAGE_BRUTE processing file: pagefile.sys
+root@system:~/Desktop/page/page-brute# page-brute --file=pagefile.sys
+[+] - page-brute processing file: pagefile.sys
 [+] - Ruleset Compilation Successful.
-[+] - PAGE_BRUTE running with the following options:
+[+] - page-brute running with the following options:
 	[-] - FILE: pagefile.sys
 	[-] - PAGE_SIZE: 4096
 	[-] - RULES TYPE: DEFAULT
