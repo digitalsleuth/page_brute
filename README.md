@@ -2,6 +2,8 @@ page-brute
 ==========
 
 **page-brute** is a digital forensic tool purposed to analyze and categorize individual paged memory frames from Windows Page Files by appying YARA-based signatures to fix-sized blocks of pagefile.sys. 
+This version has been updated for python 3 from the original [matonis/page_brute](https://github.com/matonis/page_brute).
+
 
 ***This tool can be used to:***
  * Disambiguate evidence within pagefile.sys by logically grouping blocks/pages into categories based on YARA rulesets of forensic artifacts that follow a pattern/convention.
@@ -31,7 +33,7 @@ page-brute
 ## How do I write signatures?
 YARA is a powerful engine that allows you to match groups of strings,binary sequences,and regular expressions with user-defined boolean conditions against pretty much anything.
 
-To learn more about writing YARA rules, please see the informative user guide here: http://yara-project.googlecode.com/files/YARA%20User%27s%20Manual%201.6.pdf
+To learn more about writing YARA rules, please see the yara home page: https://virustotal.github.io/yara/
 
 ## Current Signatures:
   * FTP
