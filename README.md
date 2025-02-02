@@ -2,6 +2,7 @@ page-brute
 ==========
 
 **page-brute** is a digital forensic tool purposed to analyze and categorize individual paged memory frames from Windows Page Files by appying YARA-based signatures to fix-sized blocks of pagefile.sys. 
+
 This version has been updated for python 3 from the original [matonis/page_brute](https://github.com/matonis/page_brute).
 
 
