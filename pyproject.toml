@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["debian*", "binaries*", "build*", "dist*"]
+
+[tool.setuptools.package-data]
+page_brute = ["default_signatures.yar"]
+
+[project]
+name = "page-brute"
+version = "1.0.0"
+dependencies = [
+    "yara-python"
+]
+requires-python = ">=3.9"
+authors = [
+  {name = "Corey Forman (digitalsleuth) and Mike Matonis (matonis)", email = "github@digitalsleuth.ca"}
+]
+maintainers = [
+  {name = "Corey Forman (digitalsleuth)", email = "github@digitalsleuth.ca"}
+]
+description = "Python 3 Windows Pagefile analysis tool"
+readme = "README.md"
+keywords = ["digital forensics", "dfir", "pagefile", "brute"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/digitalsleuth/page_brute"
+
+[project.scripts]
+page-brute = "page_brute.page_brute:main"
